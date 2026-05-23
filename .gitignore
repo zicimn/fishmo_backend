@@ -8,3 +8,5 @@ cache.py
 venv/
 .idea/
 .vscode/
+other/
+logger.py
