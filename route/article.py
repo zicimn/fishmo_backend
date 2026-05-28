@@ -128,12 +128,13 @@ async def index(
         select(Article.id, Article.title, Article.author_id, Article.category, Article.views, Article.likes, Article.created_at, User.username)
         .join(User, Article.author_id == User.id)
     )
-
+    #不基于base_stmt构建是因为同时查询了article和user表,造成了笛卡尔积问题导致显示错误
+    count_stmt = select(func.count(Article.id)).select_from(Article.__table__.alias('Article'))
     if category:
         base_stmt = base_stmt.where(Article.category == category)
+        count_stmt = count_stmt.where(Article.category == category)
 
     # 计算总数
-    count_stmt = select(func.count(Article.id)).select_from(base_stmt.subquery())
     count_result = await db.execute(count_stmt)
     total = count_result.scalar() or 0
 
@@ -159,7 +160,7 @@ async def index(
         )
 
     data = ArticleList(
-        total=total,
+        total=(total + size -1)//size,
         items=items
     )
     

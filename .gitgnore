@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE
+.vscode/
+.idea/
+
+# 环境 / 配置
+.env
+venv/
+config.py
+cache.py
+
+
+# 日志
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+other/
+loggre.py
