@@ -21,7 +21,7 @@ async def index(
          .where(User.id == user_id)
      )
 
-    user = result.scalar_one_or_none()
+    user = result.one_or_none()
     if not user:
         raise HTTPException(404,"用户不存在")
     
@@ -41,3 +41,12 @@ async def index(
         "email":user.email,
         "article_count":cnt
     }
+
+
+# @router.get('/visit')
+# async def visit(
+
+# ):
+#     pass
+
+    

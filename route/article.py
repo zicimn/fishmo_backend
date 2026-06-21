@@ -129,7 +129,8 @@ async def index(
         .join(User, Article.author_id == User.id)
     )
     #不基于base_stmt构建是因为同时查询了article和user表,造成了笛卡尔积问题导致显示错误
-    count_stmt = select(func.count(Article.id)).select_from(Article.__table__.alias('Article'))
+    # count_stmt = select(func.count(Article.id)).select_from(Article.__table__.alias('Article')) mysql5.7版本重命名检查宽松不会报错
+    count_stmt = select(func.count(Article.id)).select_from(Article)
     if category:
         base_stmt = base_stmt.where(Article.category == category)
         count_stmt = count_stmt.where(Article.category == category)

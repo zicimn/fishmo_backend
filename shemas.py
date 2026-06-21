@@ -83,6 +83,21 @@ class imageItem(BaseModel):
     style:str | None = "webp"
 
 
+class AnnouncementItem(BaseModel):
+    id:int
+    title:str
+    created_at:datetime
+
+    class Config:
+        from_attributes = True
+
+
+class AnnouncementList(BaseModel):
+    total:int
+    items:List[AnnouncementItem]
+
+
+
 SORTABLE_FIELDS = {
     "created_at": Article.created_at,
     "views": Article.views,

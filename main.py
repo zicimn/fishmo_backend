@@ -1,10 +1,11 @@
 from fastapi import FastAPI
-from route import user_router,article_router,search_router,tools_router,home_router
+from route import user_router,article_router,search_router,tools_router,home_router,announcement_router
 import uvicorn
 import model
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
+from config import ASYNC_DATABASE_URL
 
 app = FastAPI()
 
@@ -16,7 +17,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+print(f"[DEBUG] DATABASE_URL = {ASYNC_DATABASE_URL}")
 # 挂载静态文件目录，用于访问上传的文件
 upload_dir = (Path(__file__).parent.parent / "upload").resolve()
 print(f"[DEBUG] Static files directory: {upload_dir}")
@@ -44,6 +45,7 @@ app.include_router(article_router)
 app.include_router(search_router)
 app.include_router(tools_router)
 app.include_router(home_router)
+app.include_router(announcement_router)
 
 if __name__ == "__main__":
     uvicorn.run("main:app",reload=True,reload_excludes=["logs/*", "*.log", "__pycache__/*"])

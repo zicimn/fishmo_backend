@@ -7,7 +7,7 @@ class User(Base):
     
     id = Column(Integer, primary_key=True, autoincrement=True)  # 主键，自增ID
     username = Column(String(50), unique=True, nullable=False, index=True)  # 用户名，唯一，必填，有索引
-    email = Column(String(100), unique=True, nullable=False, index=True)  # 邮箱，唯一，必填，有索引 ← 删除这行
+    email = Column(String(100), unique=True, nullable=False, index=True)  # 邮箱，唯一，必填，有索引 
     password_hash = Column(String(255), nullable=False)  # 密码哈希，必填
     avatar = Column(String(255))  # 头像URL，可选
     bio = Column(Text)  # 个人简介，长文本，可选
