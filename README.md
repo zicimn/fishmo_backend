@@ -1,0 +1,3 @@
+这是一个关于显得没事做的个人博客网站的后端代码仓库吧？
+采用的python+fastapi框架搭建而成的，用到了一些mysql和redis数据库
+em大致就这么多emm，本网站为www.fishmo.top欢迎观看？
