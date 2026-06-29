@@ -226,7 +226,7 @@ async def retrieve(email:EmailStr,password:str,code:str,
 
 
     
-@router.get('/article/get_list')
+@router.get('/article/get_list')#本质上是公开的没必要进行验证这一步
 async def get_list(
     page:int = 1,
     size:int = 10,

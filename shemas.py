@@ -66,6 +66,7 @@ class LinkRequest(BaseModel):
     title : str | None = None
 
 class CommentItem(BaseModel):
+    id:int
     name:str
     content:str
     created_at:datetime

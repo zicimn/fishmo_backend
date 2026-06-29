@@ -58,6 +58,8 @@ async def publish(pt:Post,
     # 清理缓存
     await delete_cache_pattern('article_list:*')
     await delete_cache_pattern(f'user_articles:*user_id={user_id}*')
+    await delete_cache_pattern(f'home_comments:*user_id={user_id}')
+    await delete_cache_pattern(f"home_articles:*user_id={user_id}")
     await update_version()
 
     return{
@@ -215,6 +217,8 @@ async def edit(id :int,
     await delete_cache_pattern(f'user_articles:*user_id={user_id}*')
     await delete_cache_pattern(f'article_comments:*article_id={id}*')
     await delete_cache_pattern(f'article_links:*article_id={id}*')
+    await delete_cache_pattern(f'home_comments:*user_id={user_id}*')
+    await delete_cache_pattern(f"home_articles:*user_id={user_id}*")
     await update_version()
 
     return {"msg":"修改成功","article":article}
@@ -248,6 +252,8 @@ async def delete(
     await delete_cache_pattern(f'user_articles:*user_id={user_id}*')
     await delete_cache_pattern(f'article_comments:*article_id={id}*')
     await delete_cache_pattern(f'article_links:*article_id={id}*')
+    await delete_cache_pattern(f'home_comments:*user_id={user_id}*')
+    await delete_cache_pattern(f"home_articles:*user_id={user_id}*")
     await delete_cache_pattern(f'user_favorites:*')
     await update_version()
 
@@ -458,6 +464,7 @@ async def get_comment(
 
     comments = [
         CommentItem(
+            id = comment.id,
             name = name,
             content = comment.content,
             created_at= comment.created_at
@@ -499,6 +506,7 @@ async def add_comment(
 
     # 清理缓存
     await delete_cache_pattern(f'article_comments:*article_id={id}*')
+    await delete_cache_pattern(f'home_comments:*user_id = {user_id}*')
     await update_version()
 
     return {
@@ -572,4 +580,36 @@ async def remove_favorite(
     return {
         "msg":"取消收藏成功",
         "favorite":favorite
+    }
+
+
+
+@router.delete("/commment/remove/{id}")
+async def remove_comment(
+    id:int,
+    credentials:HTTPAuthorizationCredentials = Depends(security),
+    db:AsyncSession = Depends(get_db)
+):
+    user_id = verify_login(credentials=credentials)
+
+    result = await db.execute(
+        select(Comment)
+        .where(Comment.id == id)
+        .where(Comment.user_id == user_id)
+    )
+    comment = result.scalar_one_or_none()
+
+    if not comment:
+        raise HTTPException(404,"not found comment,so don't delete comment")
+    
+    await db.delete(comment)
+    await db.commit()
+
+    await delete_cache_pattern(f'article_comments:*article_id={comment.article_id}*')
+    await delete_cache_pattern(f"home_comments:*user_id={comment.user_id}*")
+    await update_version()
+
+    return{
+        "msg":"取消评论成功",
+        "comment":comment
     }
