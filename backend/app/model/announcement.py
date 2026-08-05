@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import String, Text, Integer, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 
-from config import Base
+from app.config import Base
 
 
 class Announcement(Base):

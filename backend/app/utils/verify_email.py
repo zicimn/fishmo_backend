@@ -1,7 +1,7 @@
 import random
 from fastapi import HTTPException,Depends
-from cache import get_cache_key,get_from_cache,delete_cache,set_to_cache
-from config import RESEND_API_KEY
+from app.config import get_cache_key,get_from_cache,delete_cache,set_to_cache
+from app.config import RESEND_API_KEY
 import resend
 from pydantic import EmailStr
 import asyncio

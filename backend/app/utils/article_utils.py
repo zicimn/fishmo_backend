@@ -10,8 +10,9 @@ def save_image_to_file(image_base64: str, article_id: int, index: int) -> str:
         data = image_base64
     
     # 获取项目根目录下的upload文件夹（与backend同级）
-    current_dir = Path(__file__).resolve().parent  # utils
-    backend_dir = current_dir.parent  # backend
+    current_dir = Path(__file__).resolve().parent  # app/utils
+    app_dir = current_dir.parent  # app
+    backend_dir = app_dir.parent  # backend
     project_root = backend_dir.parent  # 项目根目录
     upload_dir = project_root / "upload" / "article" / str(article_id)
     

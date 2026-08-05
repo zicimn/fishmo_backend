@@ -1,6 +1,6 @@
 from jose import jwt,JWTError
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from config import ALGORITHM,SECRET_KEY
+from app.config import ALGORITHM,SECRET_KEY
 from fastapi import HTTPException
 
 security = HTTPBearer()#自动去掉header

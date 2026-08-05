@@ -1,12 +1,12 @@
 from fastapi import APIRouter,Depends,HTTPException,Query
-from config import get_db,SECRET_KEY,ALGORITHM
+from app.config import get_db,SECRET_KEY,ALGORITHM
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select,update,func
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from shemas import Post,ArticleItem,ArticleList,ArticleEdit,LinkRequest,CommentItem,CommentList,SORTABLE_FIELDS
-from model import Article,ArticleLink,User,Like,Comment,Favorite
-from utils import verify_login,convert_images_to_webp,build_order_by,save_image_to_file
-from cache import get_cache_key, get_from_cache, set_to_cache, delete_cache_pattern, get_search_version, update_version
+from app.schemas import Post,ArticleItem,ArticleList,ArticleEdit,LinkRequest,CommentItem,CommentList,SORTABLE_FIELDS
+from app.model import Article,ArticleLink,User,Like,Comment,Favorite
+from app.utils import verify_login,convert_images_to_webp,build_order_by,save_image_to_file
+from app.config import get_cache_key, get_from_cache, set_to_cache, delete_cache_pattern, get_search_version, update_version
 
 security = HTTPBearer(auto_error=False)#自动去掉header
 router = APIRouter(prefix="/api/article",tags=['article'])

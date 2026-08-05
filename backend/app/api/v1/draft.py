@@ -2,10 +2,10 @@
 # from sqlalchemy.ext.asyncio import AsyncSession
 # from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 # from sqlalchemy import select,case,or_,desc,func
-# from model import Draft
-# from config import get_db
-# from utils import verify_login
-# from shemas import Post
+# from app.model import Draft
+# from app.config import get_db
+# from app.utils import verify_login
+# from app.schemas import Post
 
 # security = HTTPBearer()#自动去掉header
 # router = APIRouter(prefix="/api/draft",tags= ['draft'])

@@ -1,10 +1,10 @@
 from fastapi import APIRouter,Depends,HTTPException
-from config import get_db
+from app.config import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select,func
-from cache import get_cache_key,get_from_cache,set_to_cache,delete_cache_pattern,get_search_version,update_version
-from shemas import AnnouncementItem,AnnouncementList
-from model import Announcement
+from app.config import get_cache_key,get_from_cache,set_to_cache,delete_cache_pattern,get_search_version,update_version
+from app.schemas import AnnouncementItem,AnnouncementList
+from app.model import Announcement
 
 router = APIRouter(prefix="/api/announcement",tags=['announcement'])
 

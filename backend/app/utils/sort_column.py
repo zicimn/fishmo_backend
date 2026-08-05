@@ -1,4 +1,4 @@
-from shemas import SORTABLE_FIELDS
+from app.schemas import SORTABLE_FIELDS
 from sqlalchemy import desc, asc
 
 

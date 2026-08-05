@@ -30,6 +30,9 @@ backend/config.py
 backend/logger.py
 backend/cache.py
 backend/other
+backend/FileStruct.md
+backend/app/config/
+backend0/
 web0.sql
 
 # ===== 日志文件 =====

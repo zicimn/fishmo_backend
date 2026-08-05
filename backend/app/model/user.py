@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Text, SmallInteger
 from sqlalchemy.sql import func
-from config import Base
+from app.config import Base
 
 class User(Base):
     __tablename__ = "user"  # 数据库表名

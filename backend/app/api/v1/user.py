@@ -1,16 +1,16 @@
-from utils.verify_email import verify_code, send_email
-from utils import verify_login, save_avatar_from_base64, get_avatar_url, delete_old_avatar
+from app.utils.verify_email import verify_code, send_email
+from app.utils import verify_login, save_avatar_from_base64, get_avatar_url, delete_old_avatar
 from fastapi import APIRouter,Depends,HTTPException,Query
-from config import get_db,SECRET_KEY,ALGORITHM
-from model import User,Article,ArticleLink,Favorite
+from app.config import get_db,SECRET_KEY,ALGORITHM
+from app.model import User,Article,ArticleLink,Favorite
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select,func,or_,update
 from passlib.context import CryptContext
 from jose import jwt,JWTError
-from shemas import Account,Update_request,LoginRequest
+from app.schemas import Account,Update_request,LoginRequest
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import EmailStr
-from cache import get_cache_key,get_from_cache,delete_cache,delete_cache_pattern,set_to_cache,get_search_version,update_version
+from app.config import get_cache_key,get_from_cache,delete_cache,delete_cache_pattern,set_to_cache,get_search_version,update_version
 from typing import Optional
 # from func import send_email,codes,verify_code,verify_login,convert_to_webp
 # from backend.utils.avatar_utils import save_avatar_from_base64, get_avatar_url, delete_old_avatar

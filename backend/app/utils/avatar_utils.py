@@ -6,7 +6,7 @@ from PIL import Image
 import io
 
 # 头像存储配置
-UPLOAD_DIR = Path(__file__).parent.parent.parent / "upload" / "avatars"
+UPLOAD_DIR = Path(__file__).parent.parent.parent.parent / "upload" / "avatars"
 DEFAULT_AVATAR = "/upload/avatars/default_avatar.webp"
 BASE_URL = "/upload/avatars"
 
@@ -98,7 +98,7 @@ def delete_old_avatar(avatar_path: str | None):
         try:
             # 将URL路径转换为文件系统路径
             relative_path = avatar_path.replace('/upload/', 'upload/')
-            filepath = Path(__file__).parent.parent.parent / relative_path
+            filepath = Path(__file__).parent.parent.parent.parent / relative_path
             if filepath.exists():
                 filepath.unlink()
                 print(f"已删除旧头像: {filepath}")

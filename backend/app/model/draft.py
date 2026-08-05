@@ -4,7 +4,7 @@
 # from sqlalchemy import String, Text, Integer, DateTime, JSON, Index
 # from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-# from config import Base
+# from app.config import Base
 
 # class Draft(Base):
 #     __tablename__ = "draft"

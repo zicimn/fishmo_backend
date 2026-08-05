@@ -1,7 +1,7 @@
 from sqlalchemy import Index, ForeignKey,DateTime
 from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column
-from config import Base
+from app.config import Base
 
 
 class Favorite(Base):

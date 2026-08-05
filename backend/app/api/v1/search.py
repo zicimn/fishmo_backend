@@ -1,9 +1,9 @@
 from fastapi import Depends,HTTPException,APIRouter
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select,case,or_,desc,func
-from model import Article
-from cache import get_cache_key,get_from_cache,set_to_cache,get_search_version,update_version
-from config import get_db
+from app.model import Article
+from app.config import get_cache_key,get_from_cache,set_to_cache,get_search_version,update_version
+from app.config import get_db
 
 router = APIRouter(prefix="/api/search",tags= ['search'])
 

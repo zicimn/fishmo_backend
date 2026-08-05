@@ -1,8 +1,8 @@
 from fastapi import APIRouter,HTTPException,Depends
-from utils import convert_images_to_webp,verify_login
-from shemas import imageItem
+from app.utils import convert_images_to_webp,verify_login
+from app.schemas import imageItem
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from cache import get_cache_key,get_from_cache,set_to_cache
+from app.config import get_cache_key,get_from_cache,set_to_cache
 import random
 from datetime import datetime,timezone,timedelta
 

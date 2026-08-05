@@ -2,11 +2,11 @@ from fastapi import APIRouter,Depends,HTTPException
 from fastapi.security import HTTPBearer,HTTPAuthorizationCredentials
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select,func
-from config import get_db
-from utils import verify_login
-from model import User,Article,Comment
+from app.config import get_db
+from app.utils import verify_login
+from app.model import User,Article,Comment
 from typing import Optional
-from cache import set_to_cache,get_search_version,get_cache_key,get_from_cache
+from app.config import set_to_cache,get_search_version,get_cache_key,get_from_cache
 #东西写重了,在user.py里面也有为user/info
 security = HTTPBearer(auto_error=False)
 router = APIRouter(prefix = '/api/home',tags = ['home'])

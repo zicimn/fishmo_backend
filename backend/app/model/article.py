@@ -5,7 +5,7 @@ from sqlalchemy import String, Text, Integer, DateTime, JSON, Index,Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.dialects.mysql import TINYINT
 
-from config import Base
+from app.config import Base
 
 if TYPE_CHECKING:
     from .article_link import ArticleLink

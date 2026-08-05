@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import Integer, DateTime, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
-from config import Base
+from app.config import Base
 
 
 class Like(Base):
